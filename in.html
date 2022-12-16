@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div>
+        <h1 class="manager">Manager Details</h1>
+        <u class="manager">check the details by using dropdown</u>
+        <select id="empId">
+            <option value="">
+
+            </option>
+        </select>
+    </div><br />
+    <button id="submit" onclick="companyEmployee()">Submit</button>
+
+    <div id="own-data">
+        <h3> Own Data </h3>
+    </div>
+
+    <div id="table1">
+        <table id="o-data" border="2">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Team</th>
+                <th> Manager</th>
+                <th>Img</th>
+                <th>Short</th>
+            </thead>
+            <tbody id="emp-own-data">
+
+            </tbody>
+        </table><br />
+    </div><br />
+    <div id="m-data">
+        <h3> Team Data </h3>
+    </div>
+   
+
+    <div id="table2">
+        <table id="emp" border="2">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Team</th>
+                <th> Manager</th>
+                <th>Img</th>
+                <th>Short</th>
+            </thead>
+            <tbody id="emp-tb">
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script>
+    var empDetails =
+        [
+            {
+                "id": "58",
+                "name": "Mark Hill",
+                "designation": "Cheif Executive Officer",
+                "team": "Product",
+                "manager": null,
+                "img": "https://i.imgur.com/uk87y7L.jpg",
+                "short": "CEO"
+            },
+            {
+                "id": "59",
+                "name": "Joe Linux",
+                "designation": "Cheif Technology Officer",
+                "team": "Development & IT",
+                "manager": "58",
+                "img": "https://i.imgur.com/I8N6wle.gif",
+                "short": "CTO"
+            },
+            {
+                "id": "60",
+                "name": "Linda May",
+                "designation": "Cheif Bussiness Officer",
+                "team": "Bussiness Flow",
+                "manager": "58",
+                "img": "https://i.imgur.com/Id57NSW.jpg",
+                "short": "CBO"
+            },
+            {
+                "id": "61",
+                "name": "John Green",
+                "designation": "Cheif Accounting Officer",
+                "team": "Finance",
+                "manager": "58",
+                "img": "https://i.imgur.com/NRYrB0l.jpeg",
+                "short": "CAO"
+            },
+            {
+                "id": "62",
+                "name": "Ron Blomquist",
+                "designation": "Cheif Information Officer",
+                "team": "Development & IT",
+                "manager": "59",
+                "img": "https://i.imgur.com/Xdx7Ptn.jpeg",
+                "short": "CIO"
+            },
+            {
+                "id": "63",
+                "name": "Michael Rubin",
+                "designation": "Cheif Innovative Officer",
+                "team": "Development & IT",
+                "manager": "59",
+                "img": "https://i.imgur.com/eX7uYfG.jpeg",
+                "short": "CIO"
+            },
+            {
+                "id": "64",
+                "name": "Allice Lopez",
+                "designation": "Cheif Communication Officer",
+                "team": "Bussiness Flow",
+                "manager": "60",
+                "img": "https://i.imgur.com/waxFbz6.jpg",
+                "short": "CCO"
+            },
+            {
+                "id": "65",
+                "name": "Marry Johnson",
+                "designation": "Cheif Brand Officer",
+                "team": "Bussiness Flow",
+                "manager": "60",
+                "img": "https://i.imgur.com/Zi7qqQA.jpg",
+                "short": "CBO"
+            },
+            {
+                "id": "66",
+                "name": "Kirk Douglas",
+                "designation": "Cheif Bussiness Officer",
+                "team": "Bussiness Flow",
+                "manager": "60",
+                "img": "https://i.imgur.com/0hhtbTn.jpeg",
+                "short": "CBO"
+            },
+            {
+                "id": "67",
+                "name": "Erica Reel",
+                "designation": "Cheif Bussiness Officer",
+                "team": "Bussiness Flow",
+                "manager": "60",
+                "img": "https://i.imgur.com/I9XFqdd.jpg",
+                "short": "CBO"
+            }
+        ]
+
+
+    for (x in empDetails) {
+        var sel = document.createElement("option");
+        sel.innerHTML = empDetails[x].id;
+        sel.value = empDetails[x].id;
+        document.getElementById("empId").appendChild(sel);
+    }
+
+    function companyEmployee() {
+        var eID = document.getElementById('empId').value;
+        const targetEle1 = document.getElementById('emp-own-data')
+        const targetEle2 = document.getElementById('emp-tb');
+
+        console.log({ eID })
+        var flag = false;
+        targetEle1.innerHTML=""
+
+        if (eID !== "") {
+            for (j = 0; j < empDetails.length; j++) {
+                flag = true;
+                if (eID === empDetails[j].id) 
+                {
+                    var tr = document.createElement('tr');
+
+                    var td1 = document.createElement('td');
+                    var td2 = document.createElement('td');
+                    var td3 = document.createElement('td');
+                    var td4 = document.createElement('td');
+                    var td5 = document.createElement('td');
+                    var td6 = document.createElement('td');
+                    var td7 = document.createElement('td');
+
+                    var text1 = document.createTextNode(empDetails[j].id);
+                    var text2 = document.createTextNode(empDetails[j].name);
+                    var text3 = document.createTextNode(empDetails[j].designation);
+                    var text4 = document.createTextNode(empDetails[j].team);
+                    var text5 = document.createTextNode(empDetails[j].manager);
+                    var text6 = document.createTextNode(empDetails[j].img);
+                    var text7 = document.createTextNode(empDetails[j].short);
+
+                    td1.appendChild(text1);
+                    td2.appendChild(text2);
+                    td3.appendChild(text3);
+                    td4.appendChild(text4);
+                    td5.appendChild(text5);
+                    td6.appendChild(text6);
+                    td7.appendChild(text7);
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    tr.appendChild(td6);
+                    tr.appendChild(td7);
+
+                    targetEle1.appendChild(tr);
+                }
+            
+            }
+
+            targetEle2.innerHTML=""
+            var e = empDetails.filter(empdet => empdet.manager === eID)
+            console.log({ e })
+            for (var i = 0; i < e.length; i++) {
+                // var x = document.getElementById('o-data').rows[1].cells[0].innerHTML;
+                // console.log(x);
+                // flag = true;
+                var tr = document.createElement('tr');
+
+                var td1 = document.createElement('td');
+                var td2 = document.createElement('td');
+                var td3 = document.createElement('td');
+                var td4 = document.createElement('td');
+                var td5 = document.createElement('td');
+                var td6 = document.createElement('td');
+                var td7 = document.createElement('td');
+
+                var text1 = document.createTextNode(e[i].id);
+                var text2 = document.createTextNode(e[i].name);
+                var text3 = document.createTextNode(e[i].designation);
+                var text4 = document.createTextNode(e[i].team);
+                var text5 = document.createTextNode(e[i].manager);
+                var text6 = document.createTextNode(e[i].img);
+                var text7 = document.createTextNode(e[i].short);
+
+                td1.appendChild(text1);
+                td2.appendChild(text2);
+                td3.appendChild(text3);
+                td4.appendChild(text4);
+                td5.appendChild(text5);
+                td6.appendChild(text6);
+                td7.appendChild(text7);
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                tr.appendChild(td6);
+                tr.appendChild(td7);
+
+                targetEle2.appendChild(tr);
+                
+
+            }
+            e.innerHTML("")
+        }
+    }
+</script>
+
+</html>
